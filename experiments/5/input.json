@@ -3,8 +3,7 @@
   "method": "POST",
   "payload": {
     "taskId": "__REPLACE_WITH_EXPERIMENT_1_TASK_ID__",
-    "imageIndex": 0,
-    
+    "imageIndex": 0
   },
   "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",
