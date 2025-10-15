@@ -19,6 +19,7 @@ Environment
 - export KIE_BASE_URL=https://your-kie-base-url
 - optional: export KIE_AUTH_HEADER=Authorization (or X-API-KEY)
 - optional: export KIE_AUTH_SCHEME=Bearer (or empty to send only the key value)
+- optional: export VERBOSE=1 to capture HTTP status codes and response headers to experiments/N/http.log for each run. Authorization header values are redacted in logs.
 
 How to run
 1) Run a single experiment by pointing at its input.json:
@@ -52,7 +53,7 @@ Notes and mapping
 - Common fields observed in similar APIs: data.taskId, data.status, data.successFlag, data.resultUrls[].
 
 Experiments
-- experiments/1: mj_txt2img baseline (v7 turbo, ar 16:9) with a rich prompt.
+- experiments/1: mj_txt2img baseline (v7 relaxed, ar 1:1) with a longer English prompt.
 - experiments/2: mj_style_reference with 2 style fileUrls. Uses raw GitHub URLs to images in this repo: cat.png and gradient.png. Replace with your own if desired.
 - experiments/3: mj_omni_reference (character/omni) with 2 fileUrls and ow: 500.
 - experiments/4: mj_txt2img with prompt pass-through flags combined: --sref ... --sw 0.6 --cref ... --cw 0.85 --seed 123456.
@@ -63,6 +64,10 @@ Troubleshooting
 - 402 Payment Required: ensure your account has credits/quota.
 - 429 Too Many Requests: the script retries with exponential backoff; increase pollIntervalSec or try again later.
 - Different JSON paths: edit the *JsonPath fields in the experiment’s input.json; the harness is path-driven.
+
+Current API behavior notes
+- Provide Midjourney version as a numeric value (e.g., 7), not a string.
+- Speed parameter must be lowercase where applicable (e.g., "relaxed", "fast", "turbo"). Omni reference does not require speed.
 
 Sample reference assets
 - Public/raw URLs assumed for experiments 2 and 3:

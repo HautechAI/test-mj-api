@@ -35,6 +35,7 @@ payload=$(jq -c '.payload // {}' "$INPUT_JSON")
 base_dir=$(dirname "$INPUT_JSON")
 outputs_dir="$base_dir/outputs"
 mkdir -p "$outputs_dir"
+http_log="$base_dir/http.log"
 
 full_url="${KIE_BASE_URL%/}${endpoint}"
 status_url_template="${KIE_BASE_URL%/}${statusEndpoint}"
@@ -56,6 +57,11 @@ esac
 
 log "Submitting experiment: $INPUT_JSON"
 log "Endpoint: $full_url"
+if [ "${VERBOSE:-}" = "1" ]; then
+  # Redact auth header in console; write detailed headers to file via helpers
+  : >"$http_log" || true
+  export HTTP_LOG_PATH="$http_log"
+fi
 
 case "$method" in
   POST|post)
@@ -152,4 +158,3 @@ done
 
 log "Polling timed out after $maxPolls checks. Last status saved at $base_dir/status.json"
 exit 4
-

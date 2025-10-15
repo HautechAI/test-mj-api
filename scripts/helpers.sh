@@ -54,12 +54,26 @@ _curl_with_retry() {
     done
     IFS=$OLD_IFS
 
+    # Prepare optional response header capture when verbose
+    hdr_tmp=""
+    if [ "${VERBOSE:-}" = "1" ] && [ -n "${HTTP_LOG_PATH:-}" ]; then
+      hdr_tmp=$(mktemp)
+    fi
+
     # Execute request
     if [ "$_method" = "GET" ]; then
-      http_code=$(curl -sS -L -m 120 -o "$_out" -w '%{http_code}' "$@" "$_url" 2>&1)
+      if [ -n "$hdr_tmp" ]; then
+        http_code=$(curl -sS -L -m 120 -o "$_out" -D "$hdr_tmp" -w '%{http_code}' "$@" "$_url" 2>&1)
+      else
+        http_code=$(curl -sS -L -m 120 -o "$_out" -w '%{http_code}' "$@" "$_url" 2>&1)
+      fi
       curl_rc=$?
     else
-      http_code=$(printf '%s' "$_body" | curl -sS -L -m 120 -o "$_out" -w '%{http_code}' "$@" -X "$_method" -H 'Content-Type: application/json' --data-binary @- "$_url" 2>&1)
+      if [ -n "$hdr_tmp" ]; then
+        http_code=$(printf '%s' "$_body" | curl -sS -L -m 120 -o "$_out" -D "$hdr_tmp" -w '%{http_code}' "$@" -X "$_method" -H 'Content-Type: application/json' --data-binary @- "$_url" 2>&1)
+      else
+        http_code=$(printf '%s' "$_body" | curl -sS -L -m 120 -o "$_out" -w '%{http_code}' "$@" -X "$_method" -H 'Content-Type: application/json' --data-binary @- "$_url" 2>&1)
+      fi
       curl_rc=$?
     fi
 
@@ -68,6 +82,20 @@ _curl_with_retry() {
       log "curl failed (rc=$curl_rc) to $_url on attempt $attempt/$max_attempts"
       http_code=599
     fi
+
+    # Verbose logging of status and response headers (redacts Authorization value if present)
+    if [ "${VERBOSE:-}" = "1" ] && [ -n "${HTTP_LOG_PATH:-}" ]; then
+      {
+        printf '== %s %s attempt=%s ==\n' "$_method" "$_url" "$attempt"
+        printf 'status: %s\n' "$http_code"
+        if [ -n "$hdr_tmp" ] && [ -f "$hdr_tmp" ]; then
+          printf '--- response headers ---\n'
+          tr -d '\r' <"$hdr_tmp" | awk 'BEGIN{IGNORECASE=1} /^Authorization:/ { split($0,a,/[[:space:]]+/); if (length(a)>=2){ print "Authorization: " a[2] " REDACTED" } else { print "Authorization: REDACTED" } ; next } { print }'
+        fi
+        printf '\n'
+      } >>"$HTTP_LOG_PATH" 2>/dev/null || true
+    fi
+    [ -n "$hdr_tmp" ] && rm -f "$hdr_tmp" || true
 
     case "$http_code" in
       2??)
@@ -140,4 +168,3 @@ download_file() {
   curl -sS -L --fail -o "$_dest" "$_url" || return 1
   return 0
 }
-

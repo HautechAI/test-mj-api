@@ -3,13 +3,13 @@
   "method": "POST",
   "payload": {
     "taskType": "mj_txt2img",
-    "prompt": "Ultra-detailed cinematic landscape of a futuristic coastal city at golden hour, sweeping camera view, rich volumetric lighting, reflective water, intricate architecture mixing organic curves and brutalism, subtle lens flares, high fidelity",
-    "version": "7",
-    "speed": "turbo",
-    "aspectRatio": "16:9",
-    "stylization": 500,
-    "weirdness": 200,
-    "callBackUrl": ""
+    "prompt": "A studio-quality portrait photo of a ginger cat with soft rim lighting, shallow depth of field, detailed fur texture",
+    "version": 7,
+    "speed": "relaxed",
+    "aspectRatio": "1:1",
+    "stylization": 200,
+    "weirdness": 100,
+    "variety": 10
   },
   "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",

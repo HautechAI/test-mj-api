@@ -4,11 +4,10 @@
   "payload": {
     "taskType": "mj_txt2img",
     "prompt": "Highly detailed editorial fashion photograph on a city street at dusk, rim lighting and motion blur accents, 85mm lens look --sref https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png --sw 0.6 --cref https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png --cw 0.85 --seed 123456 --v 7 --ar 3:4",
-    "version": "7",
+    "version": 7,
     "aspectRatio": "3:4",
     "stylization": 300,
-    "weirdness": 150,
-    "callBackUrl": ""
+    "weirdness": 150
   },
   "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",

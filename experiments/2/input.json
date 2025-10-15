@@ -4,17 +4,16 @@
   "payload": {
     "taskType": "mj_style_reference",
     "prompt": "A modern product hero image on a minimal desk, soft daylight, shallow depth of field, color-coordinated palette, clean composition, subtle reflections and soft shadows, clean background",
-    "version": "7",
-    "speed": "turbo",
+    "version": 7,
+    "speed": "fast",
     "aspectRatio": "16:9",
     "fileUrls": [
       "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
       "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
     ],
-    "variety": 0.35,
+    "variety": 15,
     "stylization": 300,
-    "weirdness": 200,
-    "callBackUrl": ""
+    "weirdness": 200
   },
   "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",

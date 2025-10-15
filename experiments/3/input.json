@@ -4,7 +4,7 @@
   "payload": {
     "taskType": "mj_omni_reference",
     "prompt": "Portrait shot, studio lighting, neutral gray backdrop, head-and-shoulders framing, realistic texture",
-    "version": "7",
+    "version": 7,
     "aspectRatio": "1:1",
     "fileUrls": [
       "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
@@ -12,8 +12,7 @@
     ],
     "ow": 500,
     "stylization": 250,
-    "weirdness": 150,
-    "callBackUrl": ""
+    "weirdness": 150
   },
   "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",
