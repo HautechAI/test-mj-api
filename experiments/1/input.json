@@ -1,0 +1,19 @@
+{
+  "endpoint": "/mj/generate-mj-image",
+  "method": "POST",
+  "payload": {
+    "model": "midjourney-v7-turbo",
+    "prompt": "Ultra-detailed cinematic landscape of a futuristic coastal city at golden hour, sweeping camera view, rich volumetric lighting, reflective water, intricate architecture mixing organic curves and brutalism, subtle lens flares, high fidelity, --ar 16:9",
+    "parameters": {
+      "ar": "16:9"
+    }
+  },
+  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.status",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}
+

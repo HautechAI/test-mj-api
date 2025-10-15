@@ -1,0 +1,17 @@
+{
+  "endpoint": "/mj/upscale",
+  "method": "POST",
+  "payload": {
+    "taskId": "__REPLACE_WITH_EXPERIMENT_1_TASK_ID__",
+    "action": "upscale",
+    "variant": 1
+  },
+  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.status",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "pollIntervalSec": 20,
+  "maxPolls": 30
+}
+

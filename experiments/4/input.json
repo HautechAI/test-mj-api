@@ -1,0 +1,16 @@
+{
+  "endpoint": "/mj/generate-mj-image",
+  "method": "POST",
+  "payload": {
+    "model": "midjourney-v7-turbo",
+    "prompt": "Highly detailed editorial fashion photograph on a city street at dusk, rim lighting and motion blur accents, 85mm lens look --sref https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png --sw 0.6 --cref https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png --cw 0.85 --seed 123456"
+  },
+  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.status",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}
+

@@ -1,0 +1,16 @@
+# Local env and secrets
+.env
+env
+*.env
+
+# OS/editor
+.DS_Store
+*.swp
+*.swo
+
+# Experiment temp files
+experiments/*/outputs/*.tmp
+*.tmp
+
+# Curl leftovers
+curl-*.tmp

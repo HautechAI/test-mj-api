@@ -1,0 +1,24 @@
+{
+  "endpoint": "/mj/generate-mj-image",
+  "method": "POST",
+  "payload": {
+    "model": "midjourney-v7-turbo",
+    "prompt": "Portrait shot, studio lighting, neutral gray backdrop, head-and-shoulders framing, realistic texture",
+    "omniReference": {
+      "fileUrls": [
+        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
+        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
+      ],
+      "omniWeight": 0.85,
+      "ow": 500
+    }
+  },
+  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.status",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}
+
