@@ -90,7 +90,7 @@ _curl_with_retry() {
         printf 'status: %s\n' "$http_code"
         if [ -n "$hdr_tmp" ] && [ -f "$hdr_tmp" ]; then
           printf '--- response headers ---\n'
-          tr -d '\r' <"$hdr_tmp" | awk 'BEGIN{IGNORECASE=1} /^Authorization:/ { split($0,a,/[[:space:]]+/); if (length(a)>=2){ print "Authorization: " a[2] " REDACTED" } else { print "Authorization: REDACTED" } ; next } { print }'
+          tr -d '\r' <"$hdr_tmp" | sed -E 's/^[Aa][Uu][Tt][Hh][Oo][Rr][Ii][Zz][Aa][Tt][Ii][Oo][Nn]:[[:space:]]*([A-Za-z][A-Za-z0-9_-]*)[[:space:]].*/Authorization: \1 REDACTED/I'
         fi
         printf '\n'
       } >>"$HTTP_LOG_PATH" 2>/dev/null || true
