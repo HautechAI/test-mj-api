@@ -1,24 +1,25 @@
 {
-  "endpoint": "/mj/generate-mj-image",
+  "endpoint": "/api/v1/mj/generate",
   "method": "POST",
   "payload": {
-    "model": "midjourney-v7-turbo",
+    "taskType": "mj_omni_reference",
     "prompt": "Portrait shot, studio lighting, neutral gray backdrop, head-and-shoulders framing, realistic texture",
-    "omniReference": {
-      "fileUrls": [
-        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
-        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
-      ],
-      "omniWeight": 0.85,
-      "ow": 500
-    }
+    "version": "7",
+    "aspectRatio": "1:1",
+    "fileUrls": [
+      "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
+      "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
+    ],
+    "ow": 500,
+    "stylization": 250,
+    "weirdness": 150,
+    "callBackUrl": ""
   },
-  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",
-  "statusJsonPath": ".data.status",
+  "statusJsonPath": ".data.successFlag",
   "successFlagJsonPath": ".data.successFlag",
-  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
   "pollIntervalSec": 30,
   "maxPolls": 40
 }
-

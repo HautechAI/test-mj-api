@@ -1,26 +1,26 @@
 {
-  "endpoint": "/mj/generate-mj-image",
+  "endpoint": "/api/v1/mj/generate",
   "method": "POST",
   "payload": {
-    "model": "midjourney-v7-turbo",
-    "prompt": "A modern product hero image on a minimal desk, soft daylight, shallow depth of field, color-coordinated palette, clean composition",
-    "styleReference": {
-      "fileUrls": [
-        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
-        "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
-      ],
-      "styleWeight": 0.6,
-      "variety": 0.35,
-      "stylization": 300,
-      "weirdness": 0.2
-    }
+    "taskType": "mj_style_reference",
+    "prompt": "A modern product hero image on a minimal desk, soft daylight, shallow depth of field, color-coordinated palette, clean composition, subtle reflections and soft shadows, clean background",
+    "version": "7",
+    "speed": "turbo",
+    "aspectRatio": "16:9",
+    "fileUrls": [
+      "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png",
+      "https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png"
+    ],
+    "variety": 0.35,
+    "stylization": 300,
+    "weirdness": 200,
+    "callBackUrl": ""
   },
-  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",
-  "statusJsonPath": ".data.status",
+  "statusJsonPath": ".data.successFlag",
   "successFlagJsonPath": ".data.successFlag",
-  "resultUrlsJsonPath": ".data.resultUrls[]",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
   "pollIntervalSec": 30,
   "maxPolls": 40
 }
-

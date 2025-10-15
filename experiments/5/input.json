@@ -1,17 +1,16 @@
 {
-  "endpoint": "/mj/upscale",
+  "endpoint": "/api/v1/mj/generateUpscale",
   "method": "POST",
   "payload": {
     "taskId": "__REPLACE_WITH_EXPERIMENT_1_TASK_ID__",
-    "action": "upscale",
-    "variant": 1
+    "imageIndex": 0,
+    "callBackUrl": ""
   },
-  "statusEndpoint": "/mj/get-mj-task-details?taskId={taskId}",
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
   "taskIdJsonPath": ".data.taskId",
-  "statusJsonPath": ".data.status",
+  "statusJsonPath": ".data.successFlag",
   "successFlagJsonPath": ".data.successFlag",
-  "resultUrlsJsonPath": ".data.resultUrls[]",
-  "pollIntervalSec": 20,
-  "maxPolls": 30
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
 }
-
