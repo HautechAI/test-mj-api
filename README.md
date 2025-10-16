@@ -110,3 +110,7 @@ Pass-through prompt tests (experiments 10–13)
 - experiments/11: base prompt + " --cref <cat_url> --cw 85 --seed 123456 --v 7 --ar 3:4".
 - experiments/12: base prompt + " --sref <gradient_url> --sw 60 --seed 123456 --v 7 --ar 3:4".
 - experiments/13: base prompt + " --sref <gradient_url> --sw 60 --cref <cat_url> --cw 85 --seed 123456 --v 7 --ar 3:4".
+ 
+Additional pass-through prompt tests (V7-compatible)
+- experiments/14: base prompt + " --oref <cat_url> --ow 500 --seed 123456 --v 7 --ar 3:4" (oref only; replaces cref with oref per V7 guidance).
+- experiments/15: base prompt + " --sref <gradient_url> --sw 60 --oref <cat_url> --ow 500 --seed 123456 --v 7 --ar 3:4" (sref + oref; V7-compatible replacement for cref).

@@ -1,0 +1,21 @@
+{
+  "endpoint": "/api/v1/mj/generate",
+  "method": "POST",
+  "payload": {
+    "taskType": "mj_txt2img",
+    "prompt": "Cat is sitting on the beach and watching sunset. Front view 45 degrees. --oref https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png --ow 500 --seed 123456 --v 7 --ar 3:4",
+    "version": 7,
+    "speed": "fast",
+    "aspectRatio": "3:4",
+    "stylization": 300,
+    "weirdness": 150
+  },
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.successFlag",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}
+
