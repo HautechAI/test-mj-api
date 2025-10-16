@@ -84,3 +84,29 @@ Known quirks observed so far
 - Some providers report cref incompatible with v7; these tests still capture pass-through behavior and status.
 - cw/sw are expected as integers on some endpoints; included here as 85 and 60, respectively.
 - Speed is required by the API for pass-through routes; these use speed="fast".
+
+Pass-through prompt tests (experiments 10–13)
+- Goal: Use a single clean base prompt to test pass-through behavior for sref/cref with Midjourney v7. This captures how providers handle flags and seeds when embedded in the prompt string itself.
+- Base prompt (same for 10–13):
+  - "Cat is sitting on the beach and watching sunset. Front view 45 degrees."
+- Common settings across 10–13:
+  - taskType: mj_txt2img
+  - version: 7 (numeric)
+  - speed: "fast"
+  - aspectRatio: "3:4"
+  - stylization: 300
+  - weirdness: 150
+  - seed: 123456 (when using pass-through flags)
+  - endpoint: "/api/v1/mj/generate"
+  - statusEndpoint: "/api/v1/mj/record-info?taskId={taskId}"
+  - JSON paths as in earlier experiments: taskId .data.taskId, status .data.successFlag, successFlag .data.successFlag, resultUrls .data.resultInfoJson.resultUrls[].resultUrl
+- Image URLs:
+  - cref (character): https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png
+  - sref (style): https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png
+- cw/sw must be integers on some endpoints; we use cw=85 and sw=60.
+- Some providers report cref incompatible with v7; we still include it to capture behavior.
+
+- experiments/10: pure prompt only (no flags). Seed not included in prompt. Speed fast, ar 3:4, v7.
+- experiments/11: base prompt + " --cref <cat_url> --cw 85 --seed 123456 --v 7 --ar 3:4".
+- experiments/12: base prompt + " --sref <gradient_url> --sw 60 --seed 123456 --v 7 --ar 3:4".
+- experiments/13: base prompt + " --sref <gradient_url> --sw 60 --cref <cat_url> --cw 85 --seed 123456 --v 7 --ar 3:4".
