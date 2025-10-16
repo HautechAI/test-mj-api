@@ -73,3 +73,14 @@ Sample reference assets
 - Public/raw URLs assumed for experiments 2 and 3:
   - https://raw.githubusercontent.com/HautechAI/test-mj-api/main/cat.png
   - https://raw.githubusercontent.com/HautechAI/test-mj-api/main/gradient.png
+
+Pass-through prompt tests (experiments 6–9)
+- experiments/6: mj_txt2img with the same base prompt only (no flags). Speed fast, ar 3:4, v7.
+- experiments/7: mj_txt2img with pass-through cref only (cat.png) using integer cw=85 and seed 123456.
+- experiments/8: mj_txt2img with pass-through sref only (gradient.png) using integer sw=60 and seed 123456.
+- experiments/9: mj_txt2img with both cref (cat.png, cw=85) and sref (gradient.png, sw=60) plus seed 123456.
+
+Known quirks observed so far
+- Some providers report cref incompatible with v7; these tests still capture pass-through behavior and status.
+- cw/sw are expected as integers on some endpoints; included here as 85 and 60, respectively.
+- Speed is required by the API for pass-through routes; these use speed="fast".
