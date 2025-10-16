@@ -1,0 +1,15 @@
+{
+  "endpoint": "/api/v1/mj/generateUpscale",
+  "method": "POST",
+  "payload": {
+    "taskId": "__REPLACE_WITH_EXPERIMENT_1_TASK_ID__",
+    "imageIndex": 0
+  },
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.successFlag",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}

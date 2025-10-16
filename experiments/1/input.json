@@ -1,0 +1,21 @@
+{
+  "endpoint": "/api/v1/mj/generate",
+  "method": "POST",
+  "payload": {
+    "taskType": "mj_txt2img",
+    "prompt": "A studio-quality portrait photo of a ginger cat with soft rim lighting, shallow depth of field, detailed fur texture",
+    "version": 7,
+    "speed": "relaxed",
+    "aspectRatio": "1:1",
+    "stylization": 200,
+    "weirdness": 100,
+    "variety": 10
+  },
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.successFlag",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}

@@ -1,0 +1,21 @@
+{
+  "endpoint": "/api/v1/mj/generate",
+  "method": "POST",
+  "payload": {
+    "taskType": "mj_txt2img",
+    "prompt": "Highly detailed editorial fashion photograph on a city street at dusk, rim lighting and motion blur accents, 85mm lens look",
+    "version": 7,
+    "speed": "fast",
+    "aspectRatio": "3:4",
+    "stylization": 300,
+    "weirdness": 150
+  },
+  "statusEndpoint": "/api/v1/mj/record-info?taskId={taskId}",
+  "taskIdJsonPath": ".data.taskId",
+  "statusJsonPath": ".data.successFlag",
+  "successFlagJsonPath": ".data.successFlag",
+  "resultUrlsJsonPath": ".data.resultInfoJson.resultUrls[].resultUrl",
+  "pollIntervalSec": 30,
+  "maxPolls": 40
+}
+
